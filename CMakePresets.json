@@ -4,7 +4,7 @@
         {
             "name": "default",
             "binaryDir": "build",
-            "generator": "Ninja"
+            "generator": "Unix Makefiles"
         }
     ],
     "buildPresets": [
