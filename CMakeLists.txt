@@ -9,8 +9,8 @@ project(
   LANGUAGES CXX
 )
 
-# Set the C++ standard to C++20
-set(CMAKE_CXX_STANDARD 20)
+# Set the C++ standard to C++23
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(
@@ -27,7 +27,12 @@ add_executable(ArcadeShooter
   src/main.cpp
   src/Window.cpp
   src/Events.cpp
+        src/World/Player.cpp
+        src/World/Speedster.cpp
+        src/World/Weapon.cpp
+
 )
+
 
 if(APPLE)
   set_target_properties(ArcadeShooter PROPERTIES
