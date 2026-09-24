@@ -5,13 +5,14 @@
 Window::Window(){
 
     SDLWindow = SDL_CreateWindow(
-        "Space Fighter", 800, 300,
+        "Space Fighter", 1920, 1080,
         SDL_WINDOW_RESIZABLE);
     SDLRenderer = SDL_CreateRenderer(SDLWindow, nullptr);
     lastTime = 0;
+    currentTime = 0;
 
 };
-void Window::Render(){
+void Window::Render() const{
     const auto* Fmt = SDL_GetPixelFormatDetails(
         getSurface()-> format);
 
@@ -22,7 +23,7 @@ void Window::Render(){
     );
 }
 
-void Window::Update(){
+void Window::Update() const {
     SDL_UpdateWindowSurface(SDLWindow);
 }
 SDL_Surface* Window::getSurface()const{

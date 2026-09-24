@@ -9,8 +9,8 @@ class Window
     public:
         Window();
         SDL_Surface* getSurface() const;
-        void Render();
-        void Update();
+        void Render() const;
+        void Update() const;
         void clear();
         void show();
         float getDeltaTime();

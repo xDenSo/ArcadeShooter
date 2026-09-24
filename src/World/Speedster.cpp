@@ -1,14 +1,15 @@
 #include "Speedster.hpp"
+#include "GeneralData.hpp"
 
 #include "SDL3_image/SDL_image.h"
 
-Speedster::Speedster(const float hitBox_height, const float hitBox_width, Position position, SDL_Texture* texture) {
+Speedster::Speedster(Position position, SDL_Texture* texture) {
     this->maxHp = 100;
     this->hp = this->maxHp;
-    this->hitBox_height = hitBox_height;
-    this->hitBox_width = hitBox_width;
+    this->hitBox = HitBox{.m_HitboxHeight = 30, .m_HitboxWidth = 30};
     this->position = position;
-    this->speed = 100;
+    this->speed = 500;
     this->type = type;
     this->texture = texture;
+    this->size = Size{.m_sizeX = 32, .m_sizeY = 32};
 }

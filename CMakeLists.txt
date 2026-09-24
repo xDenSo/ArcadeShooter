@@ -30,6 +30,8 @@ add_executable(ArcadeShooter
         src/World/Player.cpp
         src/World/Speedster.cpp
         src/World/Weapon.cpp
+        src/World/Projectile.cpp
+        src/World/GeneralData.hpp
 
 )
 

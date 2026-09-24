@@ -1,8 +1,9 @@
 #pragma once
-#include <iostream>
 #include <SDL3/SDL.h>
+
+#include "World/Player.hpp"
 
 class Events{
     public:
-        void handleEvent(SDL_Event& event);
+        static void handleEvent(SDL_Event& event, Player& player);
 };

@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include <print>
-#include "/home/xcharlie/gamedev/ArcadeShooter/src/Window.hpp"
+#include "GeneralData.hpp"
+#include "../Window.hpp"
 
 int Player::nextId =1;
 
@@ -14,17 +15,28 @@ Player::Player() {
 
 }
 Player::~Player() {
-    std::println("Ship {} is destroyed", id);
+    std::print("Ship {} is destroyed", id);
 }
 void Player::update(Window& window) {
-    Player::moveCharacter(window);
+    moveCharacter(window);
+    type.update(window);
 }
 void Player::render(Window& window ){
-SDL_FRect src =  {0.0f, 0.0f, 32.0f, 32.0f};
-SDL_FRect dst =  {position.m_posX, position.m_posY, hitBox_height, hitBox_width};
-SDL_RenderTexture(window.getSDLRenderer(), texture, nullptr, &dst);
+
+    type.render(window);
+
+    SDL_FRect src =  {0.0f, 0.0f, 32.0f, 32.0f};
+    const SDL_FRect dst =  {position.m_posX, position.m_posY, size.m_sizeX, size.m_sizeY};
+    SDL_RenderTexture(window.getSDLRenderer(), texture, nullptr, &dst);
 }
 
+Position Player::getPosition() {
+    return position;
+}
+
+void Player::setPosition(const Position position) {
+    this->position = position;
+}
 
 void Player::moveCharacter(Window& window) {
     const bool *keyStates = SDL_GetKeyboardState(nullptr);
@@ -41,4 +53,17 @@ void Player::moveCharacter(Window& window) {
     if (keyStates[SDL_SCANCODE_D]) {
         this->position.m_posX += this->speed * window.getDeltaTime();
     }
+}
+
+void Player::shoot(Position position) {
+
+    const Position center{
+        .m_posX = position.m_posX + size.m_sizeX / 2,
+        .m_posY = position.m_posY + size.m_sizeY / 2
+    };
+    type.shoot(center);
+}
+
+void Player::setProjectileTexture(SDL_Texture* texture) {
+    type.setProjectileTexture(texture);
 }
